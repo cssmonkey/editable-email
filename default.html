@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Email editor</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <link href="/assets/css/app.css" rel="stylesheet" type="text/css" media="screen" />
+    <script type="text/javascript" src="/assets/js/libs/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="/assets/js/app.js"></script>
+
+</head>
+<body>
+    <div class="controls">
+        <h4 class="controlTitle">Email Editor</h4>
+        <ul>
+            <li>
+                <input class="editableRegionsToggle" type="checkbox" name="editableRegionsToggle" id="editableRegionsToggle" /><label for="editableRegionsToggle">Toggle editable regions</label></li>
+            <li><a class="resetLink" href="#">Reset page</a></li>
+            <li><a class="createNewEmailLink" href="#">Generate HTML</a></li>
+        </ul>
+    </div>
+    <iframe class="emailholder" src="email.html" width="100%" name="emailholder"></iframe>
+    <div class="textFieldHolder">
+        <label>Generated HTML</label>
+        <textarea cols="5" rows="5" id="htmlField" name="htmlField" class="htmlField"></textarea>
+    </div>
+</body>
+</html>

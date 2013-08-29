@@ -1,0 +1,116 @@
+﻿
+html
+{
+    overflow-y:scroll;
+}
+html, body
+{
+    margin:0;
+    padding:0;
+}
+
+/* --- [ App Interface ] --- */
+.controls
+{
+    position:fixed;
+    top:10px;
+    left:10px;
+    background:#f1f1f1;
+    border:1px solid #d1d1d1;
+    padding:20px 20px 10px;
+    font-family: Arial, Helvetica, verdana, sans-serif;
+    font-size:1.4em;
+    color:#4d4d4d;
+}
+.controls .controlTitle
+{
+    font-size:1em;
+    color:#4d4d4d;
+    font-weight:bold;
+    margin:0 0 15px;
+    padding:0;
+}
+.controls ul, .controls li
+{
+    padding:0;
+    margin:0;
+}
+.controls li
+{
+    list-style:none;
+    margin:0 0 10px;
+    display:block;
+}
+.controls li input[type=checkbox]
+{
+    float:left;
+    margin:0 4px 0 0;
+    padding:0;
+}
+.controls li label
+{
+    overflow:hidden;
+    margin:0;
+    padding:0;
+    display:block;
+    font-size:12px;
+    color:#0081d2;
+    font-family: Arial, Helvetica, verdana, sans-serif;
+}
+.controls a
+{
+    margin:0;
+    padding:0;
+    font-size:12px;
+    color:#0081d2;
+    text-decoration:underline;
+}
+.controls a:hover,
+.controls a:focus
+{
+    color:#0b276d;
+}
+
+/* --- [ Editable content regions ] --- */
+.textFieldHolder
+{
+    display:none;
+    padding:10px;
+    margin-top:50px;
+    border-top:1px solid #d1d1d1;
+    background:#fff;
+}
+.textFieldHolder label
+{
+    font-size:1em;
+    color:#4d4d4d;
+    font-weight:bold;
+    margin:0 0 15px;
+    padding:0;
+    display:block;
+    text-align:center;
+}
+.textFieldHolder textarea
+{
+    border:1px solid #d1d1d1;
+    width:80%;
+    display:block;
+    margin:15px auto;
+    padding:10px;
+    height:1600px;
+}
+
+/* --- [ Email Holder ] --- */
+iframe.emailholder
+{
+    margin:0;
+    padding:0;
+    width:100%;
+}
+
+/* --- [ Editable content regions ] --- */
+[contenteditable="true"]:hover,
+.highlightRegions [contenteditable="true"]
+{ 
+    outline: 2px dashed #0090D2; 
+}
