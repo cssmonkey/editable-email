@@ -1,9 +1,9 @@
-editable-email
+Editable-email
 ==============
 
 editable email template. Provides basic editing capability to HTML emails without the need of manually editing the HTML itself.
 
-<h2>Current functionality:</h2>
+<h3>Current functionality:</h3>
 <ul>
 <li>Editing existing text fields</li>
 <li>Editing existing images and make linkable</li>
@@ -11,7 +11,7 @@ editable email template. Provides basic editing capability to HTML emails withou
 <li>Generate HTML makup available for copy/paste into whatever email marketing system you use</li>
 </ul>
 
-<h2>Things to do</h2>
+<h3>Things to do:</h3>
 <ul>
 <li>Automate link tracking</li>
 <li>Reset specific regions instead of resetting the entire email</li>
