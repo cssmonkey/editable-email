@@ -15,20 +15,70 @@ window.EQTR = (function (module, $) {
         // set the email iframe to be the same height as the browser window
         $('.emailholder').height(windowHeight);
 
+        var editableText = function () {
+
+            emailIframe.contents().find('[data-texteditable="true"]').each(function (i) {
+                $(this).addClass('text_' + i);
+            })
+
+            emailIframe.contents().find('[data-texteditable="true"]').on('click', function (e) {
+                e.stopPropagation();
+                e.preventDefault();
+
+                var text = $(this).html(),
+                    html = $('<div class="container" data-element="'+ $(this).attr('class') +'"><h3 class="title">Text Editor</h3><div class="editor" name="editor" id="editor">' + text + '</div><div class="textSave submitBtn"><input type="submit" value="Update" / ></div></div>');
+
+                popup.open(html);
+
+            });
+
+            emailIframe.contents().find('[data-texteditable="true"] a').on('click', function (e) {
+                e.preventDefault();
+            });
+
+            $(document).on('setuprichtext', function () {
+                tinyMCE.init({
+                    // General options
+                    mode: 'exact',
+                    elements: 'editor',
+                    theme: "modern",
+                    plugins: "link",
+                    menubar: false,
+                    toolbar: "bold italic | link",
+                });
+            });
+
+            $('.popup').on('click', '.textSave input', function (e) {
+                e.preventDefault();
+
+                var content = tinyMCE.activeEditor.getContent(),
+                    textSelector = '.' + $('.popup .container').data('element'),
+                    textElement = emailIframe.contents().find(textSelector);
+                    
+                textElement.html(content);
+
+                popup.close();
+            });
+            
+
+        }
+        editableText();
+
         var editableAnchors = function () {
             emailIframe.contents().find('a[data-editable="true"]').on('click', function (e) {
                 e.preventDefault();
 
                 var anchor = $(this),
+                    title = '<h3 class="title">Link Editor</h3>',
                     href = $(this).attr('href'),
                     anchorText = $(this).text(),
-                    anchorPreview = '<div class="anchor"><a target="_blank" data-orighref="' + href + '" href="' + href + '">' + anchorText + '</a></div>',
+                    anchorPreview = '<div class="preview anchor"><a target="_blank" data-orighref="' + href + '" href="' + href + '">' + anchorText + '</a></div>',
                     hrefField = '<div class="field"><label for="anchorhref">Link Href</label><input name="anchorhref" type="text" value="' + href + '"/></div>',
                     textField = '<div class="field"><label for="anchortext">Link Text</label><input name="anchortext" type="text" value="' + anchorText + '"/></div>',
-                    submit = '<div class="anchorSave"><input type="submit" val="Save" / ></div>',
+                    submit = '<div class="anchorSave submitBtn"><input type="submit" value="Update" / ></div>',
                     html = $('<div class="container editanchor" />');
 
-                html[0].innerHTML = anchorPreview + hrefField + textField + submit;
+                html[0].innerHTML = title + anchorPreview + hrefField + textField + submit;
 
                 popup.open(html);
             });
@@ -74,16 +124,17 @@ window.EQTR = (function (module, $) {
                 var img = $(this),
                     imgSrc = $(this).attr('src'),
                     altAttr = $(this).attr('alt'),
+                    title = '<h3 class="title">Image Editor</h3>',
                     link = $(this).parent(),
                     linkHref = (link.attr('href')) ? link.attr('href') : '',
-                    imgPreview = '<div class="image"><a href="' + linkHref + '" target="_blank"><img data-origsrc="' + imgSrc + '" src="' + imgSrc + '" alt="" /></a></div>',
+                    imgPreview = '<div class="preview image"><a href="' + linkHref + '" target="_blank"><img data-origsrc="' + imgSrc + '" src="' + imgSrc + '" alt="" /></a></div>',
                     srcField = '<div class="field"><label for="imagesrc">Image Src</label><input name="imagesrc" type="text" value="' + imgSrc + '"/></div>',
                     altField = '<div class="field"><label for="imagealt">Image Alt Attr</label><input name="imagealt" type="text" value="' + altAttr + '"/></div>',
                     hrefField = '<div class="field"><label for="imagehref">Link Href</label><input name="imagehref" type="text" value="' + linkHref + '"/></div>',
-                    submit = '<div class="imageSave"><input type="submit" val="Save" / ></div>',
+                    submit = '<div class="imageSave submitBtn"><input type="submit" value="Update" / ></div>',
                     html = $('<div class="container editimage" />');
 
-                html[0].innerHTML = imgPreview + srcField + altField + hrefField + submit;
+                html[0].innerHTML = title + imgPreview + srcField + altField + hrefField + submit;
 
                 popup.open(html);
             });
@@ -170,7 +221,7 @@ window.EQTR = (function (module, $) {
 
                 // strip out any classnames or attrs added by editor interface
                 emailIframe.contents().find('html').removeClass('highlightRegions');
-                emailIframe.contents().find('[contenteditable]').removeAttr('contenteditable');
+                emailIframe.contents().find('[data-texteditable]').removeAttr('data-texteditable');
                 emailIframe.contents().find('[data-editable]').removeAttr('data-editable');
 
 
@@ -203,6 +254,8 @@ window.EQTR = (function (module, $) {
 
             $('.content', $popup).html(content);
             $popup.css({ marginTop: -($popup.height() / 2) });
+
+            $(document).trigger('setuprichtext');
 
             $('html').addClass('showPopup');
         },

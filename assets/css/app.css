@@ -1,4 +1,69 @@
 ﻿
+/* ============== [ Reset ] ==============
+/*
+   http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video 
+{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+strong 
+{
+    font-weight:bold;
+}
+html 
+{
+    overflow-y:scroll;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section 
+{
+    display: block;
+}
+ol, ul 
+{
+    list-style: none;
+}
+blockquote, q 
+{
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after 
+{
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+em
+{
+    font-style:italic;
+}
+
+
 html
 {
     overflow-y:scroll;
@@ -14,7 +79,8 @@ html, body
 {
     position:fixed;
     top:10px;
-    left:10px;
+    left:50%;
+    margin-left:-600px;
     background:#f1f1f1;
     border:1px solid #d1d1d1;
     padding:20px 20px 10px;
@@ -92,10 +158,11 @@ html, body
 }
 .popup 
 {
-    width:400px;
+    width:500px;
     top:-9999em;
     left:-9999em;
     position:absolute;
+    font-family: Arial, Helvetica, verdana, sans-serif;
 }
 .showPopup .popup 
 {
@@ -103,19 +170,37 @@ html, body
     border:1px solid #d1d1d1;
     top:50%;
     left:50%;
-    margin-left:-200px;
+    margin-left:-250px;
+    border-radius:3px;
 }
 
 .popup .content 
 {
-    padding:1em;
+    padding:1.6em;
+}
+
+.popup .title
+{
+    margin:-1.6em -1.6em 20px;
+    background:#ddd;
+    background-image: -moz-linear-gradient(top,#e6e6e6,#fdfdfd);
+    background-image: -webkit-gradient(linear,0 0,0 100%,from(#e6e6e6),to(#fdfdfd));
+    background-image: -webkit-linear-gradient(top,#e6e6e6,#fdfdfd);
+    background-image: -o-linear-gradient(top,#e6e6e6,#fdfdfd);
+    background-image: linear-gradient(top bottom,#e6e6e6,#fdfdfd);
+    padding:1.6em;
+    font-weight:bold;
+    font-size:16px;
+    color:#4d4d4d;
+    font-weight:bold;
+    border-bottom:1px solid #e6e6e6;
 }
 
 .popup .field 
 {
     margin:10px 0;
     padding:0 0 15px;
-    border-bottom:1px solid #d1d1d1;
+    border-bottom:1px solid #f2ecf4;
 }
 .popup .field:last-child
 {
@@ -130,6 +215,7 @@ html, body
     font-family: Arial, Helvetica, verdana, sans-serif;
     font-size:14px;
     color:#4d4d4d;
+    font-weight:bold;
 }
 .popup .field input[type="text"]
 {
@@ -140,14 +226,75 @@ html, body
     font-size:12px;
     color:#0081d2;
     width:100%;
+    border-radius:3px;
     -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
 	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
 	box-sizing: border-box;         /* Opera/IE 8+ */
+    -webkit-box-shadow: inset 0 1px 10px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: inset 0 1px 10px rgba(0,0,0,0.15);
+    box-shadow: inset 0 1px 10px rgba(0, 0, 0, 0.15);
+}
+.popup .preview
+{
+    padding:20px 0;
+    position:relative;
+}
+.popup .preview::before
+{
+    position:absolute;
+    top:0;
+    left:0;
+    font-size:12px;
+    color:#4d4d4d;
+    text-transform:uppercase;
+    content:'preview:'
+}
+
+.popup .preview a
+{
+    font-size:14px;
+    color:#0081d2;
 }
 
 .popup .image img 
 {
     height:100px;
+}
+
+.popup .submitBtn
+{
+    text-align:right;
+    margin:20px 0 0;
+}
+.popup .submitBtn input
+{
+    margin:0;
+    padding:6px 10px;
+    line-height: normal;
+    font-weight: normal;
+    background: #0D2B77;
+    overflow: visible;
+    border: 1px solid #b6b6b6;
+    font-family: Arial, sans serif;
+    display:inline-block;
+    box-shadow:2px 2px 6px rgba(0, 0, 0, 0.2);
+    background:#ddd;
+    background-image: -moz-linear-gradient(top,#fdfdfd,#ddd);
+    background-image: -webkit-gradient(linear,0 0,0 100%,from(#fdfdfd),to(#ddd));
+    background-image: -webkit-linear-gradient(top,#fdfdfd,#ddd);
+    background-image: -o-linear-gradient(top,#fdfdfd,#ddd);
+    background-image: linear-gradient(top bottom,#fdfdfd,#ddd);
+    cursor:pointer;
+}
+.popup .submitBtn input:hover
+{
+    background:#fdfdfd;
+    background-image: -moz-linear-gradient(top,#fdfdfd,rgba(221,221,221,0.5));
+    background-image: -webkit-gradient(linear,0 0,0 100%,from(#fdfdfd),to(rgba(221,221,221,0.5)));
+    background-image: -webkit-linear-gradient(top,#fdfdfd,rgba(221,221,221,0.5));
+    background-image: -o-linear-gradient(top,#fdfdfd,rgba(221,221,221,0.5));
+    background-image: linear-gradient(top bottom,#fdfdfd,rgba(221,221,221,0.5));
+    cursor:pointer;
 }
 
 /* --- [ Email iframe ] --- */
@@ -164,16 +311,17 @@ iframe.emailholder
 [contenteditable="true"]:hover,
 .highlightRegions [contenteditable="true"],
 [data-editable="true"]:hover,
-.highlightRegions [data-editable="true"]
+.highlightRegions [data-editable="true"],
+[data-texteditable="true"]:hover,
+.highlightRegions [data-texteditable="true"]
 { 
-    outline: 2px dashed #0090D2; 
+    outline: 1px dashed orange; 
 }
 
 img[data-editable="true"]:hover 
 {
-    cursor:pointer;
+    cursor:pointer!important;
 }
-
 
 /* --- [ Generated HTML textarea ] --- */
 .textFieldHolder
