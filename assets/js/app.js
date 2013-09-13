@@ -18,7 +18,7 @@ window.EQTR = (function (module, $) {
         var editableText = function () {
 
             emailIframe.contents().find('[data-texteditable="true"]').each(function (i) {
-                $(this).addClass('text_' + i);
+                $(this).attr('data-textindex','text_' + i);
             })
 
             emailIframe.contents().find('[data-texteditable="true"]').on('click', function (e) {
@@ -26,7 +26,7 @@ window.EQTR = (function (module, $) {
                 e.preventDefault();
 
                 var text = $(this).html(),
-                    html = $('<div class="container" data-element="'+ $(this).attr('class') +'"><h3 class="title">Text Editor</h3><div class="editor" name="editor" id="editor">' + text + '</div><div class="textSave submitBtn"><input type="submit" value="Update" / ></div></div>');
+                    html = $('<div class="container" data-element="' + $(this).data('textindex') + '"><h3 class="title">Text Editor</h3><div class="editor" name="editor" id="editor">' + text + '</div><div class="textSave submitBtn"><input type="submit" value="Update" / ></div></div>');
 
                 popup.open(html);
 
@@ -52,9 +52,9 @@ window.EQTR = (function (module, $) {
                 e.preventDefault();
 
                 var content = tinyMCE.activeEditor.getContent(),
-                    textSelector = '.' + $('.popup .container').data('element'),
-                    textElement = emailIframe.contents().find(textSelector);
-                    
+                    textSelector = $('.popup .container').data('element'),
+                    textElement = emailIframe.contents().find('[data-textindex="'+ textSelector +'"]');
+
                 textElement.html(content);
 
                 popup.close();
