@@ -223,6 +223,8 @@ window.EQTR = (function (module, $) {
                 emailIframe.contents().find('html').removeClass('highlightRegions');
                 emailIframe.contents().find('[data-texteditable]').removeAttr('data-texteditable');
                 emailIframe.contents().find('[data-editable]').removeAttr('data-editable');
+                emailIframe.contents().find('[rel="stylesheet"]').remove();
+                emailIframe.contents().find('[type="text/javascript"]').remove();
 
 
                 var html = window.frames['emailholder'].document.documentElement.outerHTML;
