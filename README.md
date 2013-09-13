@@ -1,4 +1,4 @@
-Editable-email
+Editable email
 ==============
 
 Provides basic editing capability to HTML emails without the need of manually editing the HTML code itself.
@@ -19,3 +19,5 @@ Provides basic editing capability to HTML emails without the need of manually ed
 <li>Provide different layout options for email</li>
 <li>Ability to select a specific email to edit (this is currently hard coded)</li>
 </ul>
+
+<p><a href="http://www.cssmonkey.co.uk/email-editor/" target="_blank">View the demo</a></p>
