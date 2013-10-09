@@ -16,8 +16,9 @@ window.EQTR = (function (module, $) {
         var setIframeHeight = function () {
             var windowHeight = $(window).height();
             var viewBarHeight = $('.toggleView').outerHeight();
+            var headerHeight = $('.header').outerHeight()
 
-            emailIframe.parent().height(windowHeight - viewBarHeight - 30);
+            emailIframe.parent().height(windowHeight - viewBarHeight - headerHeight - 20);
         }
         setIframeHeight();
 
@@ -238,7 +239,7 @@ window.EQTR = (function (module, $) {
                 $('.textFieldHolder .htmlField').val(html);
                 if ($('.textFieldHolder').is(':hidden')) {
                     $('.textFieldHolder').fadeIn(function () {
-                        scrollPage($(this), 60);
+                        scrollPage($(this), 0);
                     });
                 }
             }
