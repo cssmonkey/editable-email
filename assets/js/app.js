@@ -238,10 +238,14 @@ window.EQTR = (function (module, $) {
 
                 $('.textFieldHolder .htmlField').val(html);
                 if ($('.textFieldHolder').is(':hidden')) {
-                    $('.textFieldHolder').fadeIn(function () {
+                    $('.textFieldHolder').show(function () {
                         scrollPage($(this), 0);
                     });
                 }
+
+                $('.htmlField').on("click", function (e) {
+                    $(this).select();
+                });
             }
         }
         emailEditorControls();
