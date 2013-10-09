@@ -9,11 +9,17 @@ window.EQTR = (function (module, $) {
     });
 
     module.emailEditor = function () {
-        var windowHeight = $(window).height();
+        
         var emailIframe = $('.emailholder');
 
         // set the email iframe to be the same height as the browser window
-        $('.emailholder').height(windowHeight);
+        var setIframeHeight = function () {
+            var windowHeight = $(window).height();
+            var viewBarHeight = $('.toggleView').outerHeight();
+
+            emailIframe.parent().height(windowHeight - viewBarHeight - 30);
+        }
+        setIframeHeight();
 
         var editableText = function () {
 
@@ -231,13 +237,49 @@ window.EQTR = (function (module, $) {
 
                 $('.textFieldHolder .htmlField').val(html);
                 if ($('.textFieldHolder').is(':hidden')) {
-                    $('.textFieldHolder').slideDown(function () {
+                    $('.textFieldHolder').fadeIn(function () {
                         scrollPage($(this), 60);
                     });
                 }
             }
         }
         emailEditorControls();
+
+        // switch between desktop and mobile layouts
+        var toggleView = function () {
+            if ($('.toggleView').length === 0) {
+                return true;
+            }
+
+            $('.toggleView').on('click', '.viewSelect', function (e) {
+                e.preventDefault();
+                
+                if ($(this).hasClass('desktopView') && !$(this).hasClass('selected')) {
+                    showDesktopView();
+
+                    $('.toggleView .selected').not('desktopView').removeClass('selected');
+                    $('.toggleView .desktopView').addClass('selected');
+                }
+                else if ($(this).hasClass('mobilePortraitView') && !$(this).hasClass('selected')) {
+                    showMobilePortraitView();
+
+                    $('.toggleView .selected').not('mobilePortraitView').removeClass('selected');
+                    $('.toggleView .mobilePortraitView').addClass('selected');
+                }
+
+            });
+
+            var showDesktopView = function () {
+                setIframeHeight();
+                emailIframe.parent().attr('class', 'emailContainer desktopView');
+
+            }
+            var showMobilePortraitView = function () {
+                emailIframe.parent().attr('class', 'emailContainer mobPortraitView');
+            }
+
+        }
+        toggleView();
     }
 
 

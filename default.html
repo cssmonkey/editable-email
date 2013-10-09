@@ -23,7 +23,7 @@
         <!--<h4 class="controlTitle">Email Editor</h4>-->
         <ul>
             <li>
-                <input class="editableRegionsToggle" type="checkbox" name="editableRegionsToggle" id="editableRegionsToggle" /><label for="editableRegionsToggle">Toggle editable regions</label></li>
+                <input class="editableRegionsToggle" type="checkbox" name="editableRegionsToggle" id="editableRegionsToggle" /><label for="editableRegionsToggle">Highlight editable regions</label></li>
             <li><a class="resetLink" href="#">Reset page</a></li>
             <!--<li><a class="save" href="#">Save template</a></li>-->
             <li><a class="generateHTML" href="#">Generate HTML</a></li>
@@ -34,7 +34,14 @@
     <div class="popup">
         <div class="content"><p>content will go here</p></div>
     </div>
-    <iframe class="emailholder" src="email-template.html" width="100%" name="emailholder"></iframe>
+    <div class="emailContainer">
+        <iframe class="emailholder" src="email-template.html" width="100%" name="emailholder"></iframe>
+        <div class="toggleView">
+            <ul>
+                <li><a class="viewSelect desktopView selected" href="#">Desktop</a></li><li><a class="viewSelect mobilePortraitView" href="#">mobile</a></li>
+            </ul>
+        </div>
+    </div>
     <div class="textFieldHolder">
         <label>Generated HTML</label>
         <textarea cols="5" rows="5" id="htmlField" name="htmlField" class="htmlField"></textarea>
