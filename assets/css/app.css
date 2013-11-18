@@ -32,6 +32,7 @@ html.email-editor
 .header .headercontent {
     margin: 0 auto;
     max-width: 800px;
+    text-align:center;
 }
 .header .mainTitle {
     font-size: 2.8em;
@@ -146,12 +147,12 @@ html.email-editor
 
 .popup .content 
 {
-    padding:1.6em;
+    padding:1.6em 20px;
 }
 
 .popup .title
 {
-    margin:-1.6em -1.6em 20px;
+    margin:-1.6em -20px 20px;
     background:#ddd;
     background-image: -moz-linear-gradient(top,#e6e6e6,#fdfdfd);
     background-image: -webkit-gradient(linear,0 0,0 100%,from(#e6e6e6),to(#fdfdfd));
