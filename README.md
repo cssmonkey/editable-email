@@ -19,4 +19,4 @@ Provides basic editing capability to HTML emails without the need of manually ed
 <li>Ability to select a specific email to edit (this is currently hard coded)</li>
 </ul>
 
-<p><a href="http://www.cssmonkey.co.uk/email-editor/" target="_blank">View the demo</a></p>
+<p><a href="http://www.sean-jones.co.uk/projects/editable-email/" target="_blank">View the demo</a></p>
